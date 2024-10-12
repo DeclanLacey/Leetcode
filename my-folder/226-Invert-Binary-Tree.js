@@ -11,7 +11,7 @@
  * @return {TreeNode}
  */
 var invertTree = function(root) {
-    let dummy = root
+    
 
     function traverseTree(node) {
         if (node === null) {
@@ -28,7 +28,7 @@ var invertTree = function(root) {
         traverseTree(node.left)
     }
 
-    dummy = traverseTree(dummy)
+    traverseTree(root)
 
     return root
 };
