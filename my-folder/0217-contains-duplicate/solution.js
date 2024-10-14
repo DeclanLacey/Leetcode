@@ -3,15 +3,17 @@
  * @return {boolean}
  */
 var containsDuplicate = function(nums) {
-
-    let hashTable = {}
-
-    for (let i = 0; i < nums.length; i++) {
-        if (nums[i] in hashTable) {
-            return true
+    nums.sort((a, b) => a - b)
+    function slidingDoorSearch() {
+        let foundDuplicate = false
+        for (let i = 0; i < nums.length; i++) {
+            if (nums[i] === nums[i + 1]) {
+                foundDuplicate = true
+                break
+            }
         }
-        hashTable[nums[i]] = true
+        return foundDuplicate
     }
 
-    return false
+    return slidingDoorSearch()
 };
