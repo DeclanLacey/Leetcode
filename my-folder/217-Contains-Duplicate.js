@@ -3,7 +3,7 @@
  * @return {boolean}
  */
 var containsDuplicate = function(nums) {
-    nums.sort()
+    nums.sort((a, b) => a - b)
     function slidingDoorSearch() {
         let foundDuplicate = false
         for (let i = 0; i < nums.length; i++) {
