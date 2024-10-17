@@ -3,19 +3,26 @@
  * @return {boolean}
  */
 var isValid = function(s) {
-    let stack = []
-    let correctParens = ["()", "[]", "{}"]
+    const stack = []
+       const map = {
+        '}': '{',
+        ']': '[',
+        ')': '('
+       }
 
-    for (let i = 0; i < s.length; i++) {
-        stack.push(s[i])
+       for (const char of s) {
+            if (!(char in map)) {
+                stack.push(char)
+                continue
+            }
 
-        let lastTwo = stack[stack.length - 2] + stack[stack.length - 1]
+            if (stack[stack.length - 1] === map[char]) {
+                stack.pop()
+                continue
+            }
 
-        if (correctParens.includes(lastTwo)) {
-            stack.pop()
-            stack.pop()
-        }
-    }
+            return false
+       }
 
-    return stack.length === 0
+       return stack.length === 0
 };
