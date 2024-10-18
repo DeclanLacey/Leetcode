@@ -11,23 +11,27 @@
  * @return {boolean}
  */
 var hasCycle = function(head) {
-      let next = null
-        let currentIndexs = []
-        let isCycle = false
+        let readNodes = []
+       let isCycle
 
-        if (!head) {
-            return isCycle
+       if (!head) {
+        return false
+       }
+
+       while (isCycle === undefined) {
+        if (head.next === null) {
+            isCycle = false
+            break
         }
 
-        do{
-            next = head.next
-            if (currentIndexs.includes(next)) {
-                isCycle = true
-                break
-            }
-            currentIndexs.push(next)
-            head = head.next
-        } while (next)
+        if (readNodes.includes(head.next)) {
+            isCycle = true
+            break
+        }
+
+        readNodes.push(head)
+        head = head.next
+       }
 
         return isCycle
 };
