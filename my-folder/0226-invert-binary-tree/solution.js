@@ -12,23 +12,16 @@
  */
 var invertTree = function(root) {
     
+    if (!root) return null
 
-    function traverseTree(node) {
-        if (node === null) {
-            return
-        }
-        let leftHolder = node.left
-        node.left = node.right
-        node.right = leftHolder
+    let temp = root.left
+    root.left = root.right
+    root.right = temp
 
-        if (node.left === null && node.right === null) {
-            return node
-        }
-        traverseTree(node.right)
-        traverseTree(node.left)
-    }
-
-    traverseTree(root)
+    invertTree(root.left)
+    invertTree(root.right)
+    
+    return root
 
     return root
 };
