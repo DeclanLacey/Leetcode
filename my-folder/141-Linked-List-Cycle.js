@@ -11,27 +11,15 @@
  * @return {boolean}
  */
 var hasCycle = function(head) {
-        let readNodes = []
-       let isCycle
+       let rightPointer = head
+       let leftPointer = head
 
-       if (!head) {
-        return false
+       while (rightPointer !== null && rightPointer.next !== null) {
+            rightPointer = rightPointer.next.next
+            leftPointer = leftPointer.next
+
+            if (rightPointer === leftPointer) return true
        }
 
-       while (isCycle === undefined) {
-        if (head.next === null) {
-            isCycle = false
-            break
-        }
-
-        if (readNodes.includes(head.next)) {
-            isCycle = true
-            break
-        }
-
-        readNodes.push(head)
-        head = head.next
-       }
-
-        return isCycle
+       return false
 };
