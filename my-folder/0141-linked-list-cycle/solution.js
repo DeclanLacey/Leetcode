@@ -11,23 +11,15 @@
  * @return {boolean}
  */
 var hasCycle = function(head) {
-      let next = null
-        let currentIndexs = []
-        let isCycle = false
+       let rightPointer = head
+       let leftPointer = head
 
-        if (!head) {
-            return isCycle
-        }
+       while (rightPointer !== null && rightPointer.next !== null) {
+            rightPointer = rightPointer.next.next
+            leftPointer = leftPointer.next
 
-        do{
-            next = head.next
-            if (currentIndexs.includes(next)) {
-                isCycle = true
-                break
-            }
-            currentIndexs.push(next)
-            head = head.next
-        } while (next)
+            if (rightPointer === leftPointer) return true
+       }
 
-        return isCycle
+       return false
 };
