@@ -3,17 +3,11 @@
  * @return {boolean}
  */
 var containsDuplicate = function(nums) {
-    nums.sort((a, b) => a - b)
-    function slidingDoorSearch() {
-        let foundDuplicate = false
+    let numSet = new Set()
         for (let i = 0; i < nums.length; i++) {
-            if (nums[i] === nums[i + 1]) {
-                foundDuplicate = true
-                break
-            }
+            numSet.add(nums[i])
         }
-        return foundDuplicate
-    }
 
-    return slidingDoorSearch()
+        if (numSet.size < nums.length) return true
+        return false
 };
