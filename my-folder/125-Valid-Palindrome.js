@@ -3,36 +3,33 @@
  * @return {boolean}
  */
 var isPalindrome = function(s) {
-    let string = s.split(\\).filter((char) => isAlphaNumeric(char)).join(\\).toLowerCase()
-    let palindrome = true
-    let indexOne = 0
-    let indexTwo = string.length - 1
+    let left = 0
+        let right = s.length - 1
+        let res = true
 
-    while (true) {
+        while (left < right) {
+            console.log(s[left])
+            console.log(s[right])
+            while (!/^[a-z0-9]+$/i.test(s[left])) {
+                left++
+            }
+            while (!/^[a-z0-9]+$/i.test(s[right])) {
+                right--
+            }
 
-        if (indexOne > indexTwo) {
-            break
+            if (!s[left] || !s[right]) {
+                res = true
+                break
+            }
+            
+            if (s[left].toLowerCase() === s[right].toLowerCase()) {
+                left++
+                right--
+            }else {
+                res = false
+                break
+            }
         }
 
-        if (string[indexOne] === string[indexTwo]) {
-            indexOne += 1
-            indexTwo -= 1
-            continue
-        }else if (string[indexOne] != string[indexTwo]) {
-            palindrome = false
-            break
-        }
-        
-    }
-
-    function isAlphaNumeric(char) {
-        const code = char.charCodeAt(0);
-        return (
-            (code >= 48 && code <= 57) || // 0-9
-            (code >= 65 && code <= 90) || // A-Z
-            (code >= 97 && code <= 122) // a-z
-        );
-    }
-
-    return palindrome
+        return res
 };
