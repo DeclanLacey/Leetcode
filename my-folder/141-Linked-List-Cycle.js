@@ -11,15 +11,16 @@
  * @return {boolean}
  */
 var hasCycle = function(head) {
-       let rightPointer = head
-       let leftPointer = head
+        let slow = head
+        let fast = head
+        if (!head) return false
 
-       while (rightPointer !== null && rightPointer.next !== null) {
-            rightPointer = rightPointer.next.next
-            leftPointer = leftPointer.next
+        while (fast !== null && fast.next !== null) {
+            slow = slow.next
+            fast = fast.next.next 
 
-            if (rightPointer === leftPointer) return true
-       }
+            if (fast === slow) return true
+        }
 
-       return false
-};
+        return false
+}
