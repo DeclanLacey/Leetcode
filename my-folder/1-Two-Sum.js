@@ -4,17 +4,42 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
-    const numMap = new Map()
-
-      for (let i = 0; i < nums.length; i++) {
-        const diff = target - nums[i]
-        if (numMap.has(diff)) {
-            return [numMap.get(diff), i]
+        nums.sort((a, b) => a - b)
+        let res = []
+        let left = 0
+        let right = nums.length - 1
+        if (target < 0) {
+            target = target / -1
         }
-        
 
-        numMap.set(nums[i], i)
-      }
+        while (res.length < 2) {
+            if (nums[left] < 0 && nums[right] < 0) {
+                let sum = (nums[left] / -1) + (nums[right] / -1) 
+                if (sum === target) {
+                    res.push(left)
+                    res.push(right)
+                }else if (sum > target) {
+                    right--
+                }else {
+                    left++
+                }
 
-      return []
+            }else {
+                let sum = nums[left] + nums[right]
+                if (sum === target) {
+                    res.push(left)
+                    res.push(right)
+                }else if (sum > target) {
+                    right--
+                }else {
+                    left++
+                }
+
+            }
+
+            
+        }
+
+        return res
+
 };
