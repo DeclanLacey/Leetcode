@@ -12,12 +12,21 @@
  * @return {boolean}
  */
 var isSameTree = function(p, q) {
-     if (!p && !q) return true
+     function findSameTree(nodeOne, nodeTwo) {
+        if (!nodeOne && !nodeTwo) {
+            return true
+        }
 
-    if (p && q && p.val === q.val) {
-        return ( isSameTree(p.left, q.left) && isSameTree(p.right, q.right) )
-    }else {
-        return false
+        if (nodeOne && nodeTwo && nodeOne.val === nodeTwo.val) {
+            return (
+                findSameTree(nodeOne.left, nodeTwo.left) &&
+                findSameTree(nodeOne.right, nodeTwo.right)
+            )
+        }else {
+            return false
+        }
+        
     }
-    
+
+    return findSameTree(p, q)
 };
