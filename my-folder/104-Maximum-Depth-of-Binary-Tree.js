@@ -11,10 +11,10 @@
  * @return {number}
  */
 var maxDepth = function(root) {
-    function traverseTree(node) {
+    function findDepth(node) {
             if (!node) return 0
-            return 1 + Math.max(traverseTree(node.left), traverseTree(node.right))
+            return 1 + Math.max(findDepth(node.left), findDepth(node.right))
         }
 
-        return traverseTree(root)
+        return findDepth(root)
 };
