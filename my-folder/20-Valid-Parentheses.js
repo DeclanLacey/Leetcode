@@ -4,25 +4,24 @@
  */
 var isValid = function(s) {
     const stack = []
-       const map = {
-        '}': '{',
-        ']': '[',
-        ')': '('
-       }
 
-       for (const char of s) {
-            if (!(char in map)) {
-                stack.push(char)
-                continue
+        const parens = {
+            ')': '(',
+            ']': '[',
+            '}': '{'
+        }
+
+        for (let paren of s) {
+            if (parens[paren]) {
+                if (stack.length > 0 && stack[stack.length - 1] === parens[paren]) {
+                    stack.pop()
+                }else {
+                    return false
+                }
+            }else {
+                stack.push(paren)
             }
+        }
 
-            if (stack[stack.length - 1] === map[char]) {
-                stack.pop()
-                continue
-            }
-
-            return false
-       }
-
-       return stack.length === 0
+        return stack.length === 0
 };
